@@ -6,7 +6,7 @@
 
 Name:             python-cmd2
 Version:          0.6.4
-Release:          2%{?dist}
+Release:          3%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
@@ -134,6 +134,9 @@ popd
 
 
 %changelog
+* Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.6.4-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Thu Jul 05 2012 Ralph Bean <rbean@redhat.com> - 0.6.4-2
 - Corrected spelling error in description.
 
