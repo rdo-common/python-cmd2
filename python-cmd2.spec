@@ -6,13 +6,14 @@
 
 Name:             python-cmd2
 Version:          0.6.4
-Release:          5%{?dist}
+Release:          7%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
 License:          MIT
 URL:              http://pypi.python.org/pypi/cmd2
 Source0:          http://pypi.python.org/packages/source/c/%{modname}/%{modname}-%{version}.tar.gz
+Patch0:           silent-editor-check.patch
 
 BuildArch:        noarch
 
@@ -86,6 +87,7 @@ See docs at http://packages.python.org/cmd2/
 
 %prep
 %setup -q -n %{modname}-%{version}
+%patch0 -p1
 
 chmod -x README.txt
 dos2unix README.txt
@@ -134,6 +136,9 @@ popd
 
 
 %changelog
+* Tue Jul 30 2013 Pádraig Brady <pbrady@redhat.com> - 0.6.4-7
+- Suppress warnings about missing editors when $EDITOR not set
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.6.4-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
