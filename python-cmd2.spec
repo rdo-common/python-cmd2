@@ -6,7 +6,7 @@
 
 Name:             python-cmd2
 Version:          0.6.7
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
@@ -134,6 +134,9 @@ popd
 
 
 %changelog
+* Thu Nov 14 2013 Ralph Bean <rbean@redhat.com> - 0.6.7-2
+- Bump release.
+
 * Thu Nov 14 2013 Ralph Bean <rbean@redhat.com> - 0.6.7-1
 - Latest upstream.
 - Drop patch which has been upstreamed.
