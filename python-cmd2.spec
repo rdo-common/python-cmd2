@@ -1,19 +1,18 @@
-%if 0%{?fedora} > 12 || 0%{?rhel} > 6
+%if 0%{?fedora}
 %global with_python3 1
 %endif
 
 %global modname cmd2
 
 Name:             python-cmd2
-Version:          0.6.4
-Release:          7%{?dist}
+Version:          0.6.7
+Release:          1%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
 License:          MIT
 URL:              http://pypi.python.org/pypi/cmd2
 Source0:          http://pypi.python.org/packages/source/c/%{modname}/%{modname}-%{version}.tar.gz
-Patch0:           silent-editor-check.patch
 
 BuildArch:        noarch
 
@@ -87,7 +86,6 @@ See docs at http://packages.python.org/cmd2/
 
 %prep
 %setup -q -n %{modname}-%{version}
-%patch0 -p1
 
 chmod -x README.txt
 dos2unix README.txt
@@ -136,6 +134,11 @@ popd
 
 
 %changelog
+* Thu Nov 14 2013 Ralph Bean <rbean@redhat.com> - 0.6.7-1
+- Latest upstream.
+- Drop patch which has been upstreamed.
+- Modernized python3 macro def.
+
 * Tue Jul 30 2013 Pádraig Brady <pbrady@redhat.com> - 0.6.4-7
 - Suppress warnings about missing editors when $EDITOR not set
 
