@@ -6,7 +6,7 @@
 
 Name:             python-cmd2
 Version:          0.6.7
-Release:          2%{?dist}
+Release:          3%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
@@ -26,7 +26,7 @@ BuildRequires:    python-tools
 BuildRequires:    dos2unix
 %endif
 
-Requires:         pyparsing
+Requires:         pyparsing >= 2.0.1
 
 %description
 Enhancements for standard library's cmd module.
@@ -134,6 +134,9 @@ popd
 
 
 %changelog
+* Wed Dec 11 2013 Ralph Bean <rbean@redhat.com> - 0.6.7-3
+- Versioned requirement on pyparsing.  (#1040339)
+
 * Thu Nov 14 2013 Ralph Bean <rbean@redhat.com> - 0.6.7-2
 - Bump release.
 
