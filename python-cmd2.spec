@@ -6,7 +6,7 @@
 
 Name:             python-cmd2
 Version:          0.6.7
-Release:          3%{?dist}
+Release:          4%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
@@ -134,6 +134,9 @@ popd
 
 
 %changelog
+* Wed May 14 2014 Bohuslav Kabrda <bkabrda@redhat.com> - 0.6.7-4
+- Rebuilt for https://fedoraproject.org/wiki/Changes/Python_3.4
+
 * Wed Dec 11 2013 Ralph Bean <rbean@redhat.com> - 0.6.7-3
 - Versioned requirement on pyparsing.  (#1040339)
 
