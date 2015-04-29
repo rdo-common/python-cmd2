@@ -6,7 +6,7 @@
 
 Name:             python-cmd2
 Version:          0.6.8
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
@@ -95,18 +95,14 @@ rm -rf %{py3dir}
 cp -a . %{py3dir}
 %endif
 
-
 %build
 %{__python} setup.py build
 
 %if 0%{?with_python3}
-/usr/bin/2to3 -w -n %{py3dir}
 pushd %{py3dir}
 %{__python3} setup.py build
 popd
 %endif
-
-
 
 %install
 %if 0%{?with_python3}
@@ -117,9 +113,8 @@ popd
 
 %{__python} setup.py install -O1 --skip-build --root=%{buildroot}
 
-
 %files
-%doc README.txt 
+%doc README.txt
 %{python_sitelib}/cmd2.py*
 %{python_sitelib}/%{modname}-%{version}*
 
@@ -129,11 +124,12 @@ popd
 %{python3_sitelib}/cmd2.py*
 %{python3_sitelib}/__pycache__/cmd2*
 %{python3_sitelib}/%{modname}-%{version}*
-
 %endif
 
-
 %changelog
+* Wed Apr 29 2015 Ralph Bean <rbean@redhat.com> - 0.6.8-2
+- Fix python3 subpackage by removing double-run of 2to3 (it's not idempotent!).
+
 * Wed Apr 29 2015 Ralph Bean <rbean@redhat.com> - 0.6.8-1
 - new version
 
