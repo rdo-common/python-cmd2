@@ -5,8 +5,8 @@
 %global modname cmd2
 
 Name:             python-cmd2
-Version:          0.6.7
-Release:          5%{?dist}
+Version:          0.6.8
+Release:          1%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
@@ -134,6 +134,9 @@ popd
 
 
 %changelog
+* Wed Apr 29 2015 Ralph Bean <rbean@redhat.com> - 0.6.8-1
+- new version
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.6.7-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
