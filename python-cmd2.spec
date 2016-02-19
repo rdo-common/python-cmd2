@@ -6,13 +6,16 @@
 
 Name:             python-cmd2
 Version:          0.6.8
-Release:          5%{?dist}
+Release:          6%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
 License:          MIT
 URL:              http://pypi.python.org/pypi/cmd2
 Source0:          http://pypi.python.org/packages/source/c/%{modname}/%{modname}-%{version}.tar.gz
+
+# https://bitbucket.org/catherinedevlin/cmd2/issues/18
+Patch0:           python-cmd2-python35-compat.patch
 
 BuildArch:        noarch
 
@@ -86,6 +89,7 @@ See docs at http://packages.python.org/cmd2/
 
 %prep
 %setup -q -n %{modname}-%{version}
+%patch0 -p1
 
 chmod -x README.txt
 dos2unix README.txt
@@ -127,6 +131,9 @@ popd
 %endif
 
 %changelog
+* Fri Feb 19 2016 Ralph Bean <rbean@redhat.com> - 0.6.8-6
+- Apply patch for compat on python-3.5.
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.8-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
