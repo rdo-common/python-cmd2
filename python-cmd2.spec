@@ -6,7 +6,7 @@
 
 Name:             python-cmd2
 Version:          0.6.8
-Release:          7%{?dist}
+Release:          8%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
@@ -30,6 +30,7 @@ BuildRequires:    dos2unix
 %endif
 
 Requires:         pyparsing >= 2.0.1
+Requires:         /usr/bin/which
 
 %description
 Enhancements for standard library's cmd module.
@@ -131,6 +132,9 @@ popd
 %endif
 
 %changelog
+* Mon Oct 31 2016 Mike Burns <mburns@redhat.com> - 0.6.8-8
+- add Requires: which (bz#1390360)
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.6.8-7
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
