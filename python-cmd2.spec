@@ -6,7 +6,7 @@
 
 Name:             python-cmd2
 Version:          0.6.8
-Release:          8%{?dist}
+Release:          9%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
@@ -132,6 +132,9 @@ popd
 %endif
 
 %changelog
+* Mon Dec 19 2016 Miro Hrončok <mhroncok@redhat.com> - 0.6.8-9
+- Rebuild for Python 3.6
+
 * Mon Oct 31 2016 Mike Burns <mburns@redhat.com> - 0.6.8-8
 - add Requires: which (bz#1390360)
 
