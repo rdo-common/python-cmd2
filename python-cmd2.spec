@@ -6,7 +6,7 @@
 
 Name:             python-cmd2
 Version:          0.6.8
-Release:          11%{?dist}
+Release:          12%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
@@ -29,32 +29,39 @@ BuildRequires:    python-tools
 BuildRequires:    dos2unix
 %endif
 
+%global _description\
+Enhancements for standard library's cmd module.\
+\
+Drop-in replacement adds several features for command-prompt tools:\
+\
+ * Searchable command history (commands: "hi", "li", "run")\
+ * Load commands from file, save to file, edit commands in file\
+ * Multi-line commands\
+ * Case-insensitive commands\
+ * Special-character shortcut commands (beyond cmd's "@" and "!")\
+ * Settable environment parameters\
+ * Parsing commands with flags\
+ * > (filename), >> (filename) redirect output to file\
+ * < (filename) gets input from file\
+ * bare >, >>, < redirect to/from paste buffer\
+ * accepts abbreviated commands when unambiguous\
+ * `py` enters interactive Python console\
+ * test apps against sample session transcript (see example/example.py)\
+\
+Usable without modification anywhere cmd is used; simply import cmd2.Cmd\
+in place of cmd.Cmd.\
+\
+See docs at http://packages.python.org/cmd2/
+
+%description %_description
+
+%package -n python2-cmd2
+Summary: %summary
 Requires:         pyparsing >= 2.0.1
 Requires:         /usr/bin/which
+%{?python_provide:%python_provide python2-cmd2}
 
-%description
-Enhancements for standard library's cmd module.
-
-Drop-in replacement adds several features for command-prompt tools:
-
- * Searchable command history (commands: "hi", "li", "run")
- * Load commands from file, save to file, edit commands in file
- * Multi-line commands
- * Case-insensitive commands
- * Special-character shortcut commands (beyond cmd's "@" and "!")
- * Settable environment parameters 
- * Parsing commands with flags
- * > (filename), >> (filename) redirect output to file
- * < (filename) gets input from file
- * bare >, >>, < redirect to/from paste buffer
- * accepts abbreviated commands when unambiguous
- * `py` enters interactive Python console
- * test apps against sample session transcript (see example/example.py)
-
-Usable without modification anywhere cmd is used; simply import cmd2.Cmd
-in place of cmd.Cmd.
-
-See docs at http://packages.python.org/cmd2/
+%description -n python2-cmd2 %_description
 
 %if 0%{?with_python3}
 %package -n python3-cmd2
@@ -118,7 +125,7 @@ popd
 
 %{__python} setup.py install -O1 --skip-build --root=%{buildroot}
 
-%files
+%files -n python2-cmd2
 %doc README.txt
 %{python_sitelib}/cmd2.py*
 %{python_sitelib}/%{modname}-%{version}*
@@ -132,6 +139,10 @@ popd
 %endif
 
 %changelog
+* Sat Aug 19 2017 Zbigniew Jędrzejewski-Szmek <zbyszek@in.waw.pl> - 0.6.8-12
+- Python 2 binary package renamed to python2-cmd2
+  See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3
+
 * Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.8-11
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
