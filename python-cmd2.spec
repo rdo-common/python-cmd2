@@ -6,7 +6,7 @@
 
 Name:             python-cmd2
 Version:          0.6.8
-Release:          13%{?dist}
+Release:          14%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
@@ -25,7 +25,7 @@ BuildRequires:    dos2unix
 
 %if 0%{?with_python3}
 BuildRequires:    python3-devel
-BuildRequires:    python-tools
+BuildRequires:    python2-tools
 BuildRequires:    dos2unix
 %endif
 
@@ -57,7 +57,7 @@ See docs at http://packages.python.org/cmd2/
 
 %package -n python2-cmd2
 Summary: %summary
-Requires:         pyparsing >= 2.0.1
+Requires:         python2-pyparsing >= 2.0.1
 Requires:         /usr/bin/which
 %{?python_provide:%python_provide python2-cmd2}
 
@@ -139,6 +139,10 @@ popd
 %endif
 
 %changelog
+* Sun Feb 11 2018 Iryna Shcherbina <ishcherb@redhat.com> - 0.6.8-14
+- Update Python 2 dependency declarations to new packaging standards
+  (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
+
 * Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.8-13
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
