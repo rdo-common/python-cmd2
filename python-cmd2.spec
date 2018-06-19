@@ -6,7 +6,7 @@
 
 Name:             python-cmd2
 Version:          0.6.8
-Release:          14%{?dist}
+Release:          15%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
@@ -139,6 +139,9 @@ popd
 %endif
 
 %changelog
+* Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 0.6.8-15
+- Rebuilt for Python 3.7
+
 * Sun Feb 11 2018 Iryna Shcherbina <ishcherb@redhat.com> - 0.6.8-14
 - Update Python 2 dependency declarations to new packaging standards
   (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
