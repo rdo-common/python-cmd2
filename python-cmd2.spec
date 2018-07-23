@@ -5,20 +5,15 @@
 %global modname cmd2
 
 Name:             python-cmd2
-Version:          0.6.8
-Release:          16%{?dist}
+Version:          0.8.8
+Release:          1%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
 License:          MIT
 URL:              http://pypi.python.org/pypi/cmd2
 Source0:          http://pypi.python.org/packages/source/c/%{modname}/%{modname}-%{version}.tar.gz
-
-# https://bitbucket.org/catherinedevlin/cmd2/issues/18
-Patch0:           python-cmd2-python35-compat.patch
-
 BuildArch:        noarch
-
 
 BuildRequires:    python2-devel
 BuildRequires:    dos2unix
@@ -97,10 +92,6 @@ See docs at http://packages.python.org/cmd2/
 
 %prep
 %setup -q -n %{modname}-%{version}
-%patch0 -p1
-
-chmod -x README.txt
-dos2unix README.txt
 
 %if 0%{?with_python3}
 rm -rf %{py3dir}
@@ -108,7 +99,7 @@ cp -a . %{py3dir}
 %endif
 
 %build
-%{__python} setup.py build
+%{__python2} setup.py build
 
 %if 0%{?with_python3}
 pushd %{py3dir}
@@ -123,22 +114,28 @@ pushd %{py3dir}
 popd
 %endif
 
-%{__python} setup.py install -O1 --skip-build --root=%{buildroot}
+%{__python2} setup.py install -O1 --skip-build --root=%{buildroot}
 
 %files -n python2-cmd2
-%doc README.txt
-%{python_sitelib}/cmd2.py*
-%{python_sitelib}/%{modname}-%{version}*
+%license LICENSE
+%doc CHANGELOG.md CODEOWNERS CONTRIBUTING.md README.md
+%{python2_sitelib}/cmd2.py*
+%{python2_sitelib}/%{modname}-%{version}*
 
 %if 0%{?with_python3}
 %files -n python3-%{modname}
-%doc README.txt
+%license LICENSE
+%doc CHANGELOG.md CODEOWNERS CONTRIBUTING.md README.md
 %{python3_sitelib}/cmd2.py*
 %{python3_sitelib}/__pycache__/cmd2*
 %{python3_sitelib}/%{modname}-%{version}*
 %endif
 
 %changelog
+* Mon Jul 23 2018 Kevin Fenzi <kevin@scrye.com> - 0.8.8-1
+- Fix FTBFS bug #1605635
+- Update to 0.8.8 - Fixes bug #1568598
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.8-16
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
