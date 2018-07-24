@@ -6,7 +6,7 @@
 
 Name:             python-cmd2
 Version:          0.8.8
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 Group:            Development/Libraries
@@ -16,10 +16,12 @@ Source0:          http://pypi.python.org/packages/source/c/%{modname}/%{modname}
 BuildArch:        noarch
 
 BuildRequires:    python2-devel
+BuildRequires:    python2-setuptools
 BuildRequires:    dos2unix
 
 %if 0%{?with_python3}
 BuildRequires:    python3-devel
+BuildRequires:    python3-setuptools
 BuildRequires:    python2-tools
 BuildRequires:    dos2unix
 %endif
@@ -132,6 +134,9 @@ popd
 %endif
 
 %changelog
+* Tue Jul 24 2018 Alfredo Moralejo <amoralej@redhat.com> - 0.8.8-2
+- Added setuptools as BuildRequires.
+
 * Mon Jul 23 2018 Kevin Fenzi <kevin@scrye.com> - 0.8.8-1
 - Fix FTBFS bug #1605635
 - Update to 0.8.8 - Fixes bug #1568598
