@@ -6,7 +6,7 @@
 
 Name:             python-cmd2
 Version:          0.8.8
-Release:          4%{?dist}
+Release:          5%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 License:          MIT
@@ -49,7 +49,11 @@ BuildRequires:    dos2unix
 
 Requires:         python2-pyparsing >= 2.0.1
 Requires:         python2-pyperclip
+Requires:         python2-six
 Requires:         python2-wcwidth
+Requires:         python2-contextlib2
+Requires:         python2-enum34
+Requires:         python2-subprocess32
 Requires:         /usr/bin/which
 %{?python_provide:%python_provide python2-cmd2}
 
@@ -65,6 +69,7 @@ BuildRequires:    dos2unix
 
 Requires:         python3-pyparsing
 Requires:         python3-pyperclip
+Requires:         python3-six
 Requires:         python3-wcwidth
 Requires:         /usr/bin/which
 %{?python_provide:%python_provide python3-cmd2}
@@ -126,6 +131,9 @@ See docs at http://packages.python.org/cmd2/
 %endif
 
 %changelog
+* Wed Jul 25 2018 Haïkel Guémar <hguemar@fedoraproject.org> - 0.8.8-5
+- More dependencies
+
 * Wed Jul 25 2018 Haïkel Guémar <hguemar@fedoraproject.org> - 0.8.8-4
 - Add missing wcwidth dependency
 
