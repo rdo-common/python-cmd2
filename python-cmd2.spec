@@ -6,25 +6,14 @@
 
 Name:             python-cmd2
 Version:          0.8.8
-Release:          2%{?dist}
+Release:          3%{?dist}
 Summary:          Extra features for standard library's cmd module
 
-Group:            Development/Libraries
 License:          MIT
 URL:              http://pypi.python.org/pypi/cmd2
 Source0:          http://pypi.python.org/packages/source/c/%{modname}/%{modname}-%{version}.tar.gz
 BuildArch:        noarch
 
-BuildRequires:    python2-devel
-BuildRequires:    python2-setuptools
-BuildRequires:    dos2unix
-
-%if 0%{?with_python3}
-BuildRequires:    python3-devel
-BuildRequires:    python3-setuptools
-BuildRequires:    python2-tools
-BuildRequires:    dos2unix
-%endif
 
 %global _description\
 Enhancements for standard library's cmd module.\
@@ -54,7 +43,12 @@ See docs at http://packages.python.org/cmd2/
 
 %package -n python2-cmd2
 Summary: %summary
+BuildRequires:    python2-devel
+BuildRequires:    python2-setuptools
+BuildRequires:    dos2unix
+
 Requires:         python2-pyparsing >= 2.0.1
+Requires:         python2-pyperclip
 Requires:         /usr/bin/which
 %{?python_provide:%python_provide python2-cmd2}
 
@@ -63,9 +57,15 @@ Requires:         /usr/bin/which
 %if 0%{?with_python3}
 %package -n python3-cmd2
 Summary:        Extra features for standard library's cmd module
-Group:          Development/Libraries
+BuildRequires:    python3-devel
+BuildRequires:    python3-setuptools
+BuildRequires:    python2-tools
+BuildRequires:    dos2unix
 
-Requires:       python3-pyparsing
+Requires:         python3-pyparsing
+Requires:         python3-pyperclip
+Requires:         /usr/bin/which
+%{?python_provide:%python_provide python3-cmd2}
 
 %description -n python3-cmd2
 Enhancements for standard library's cmd module.
@@ -95,28 +95,18 @@ See docs at http://packages.python.org/cmd2/
 %prep
 %setup -q -n %{modname}-%{version}
 
-%if 0%{?with_python3}
-rm -rf %{py3dir}
-cp -a . %{py3dir}
-%endif
-
 %build
-%{__python2} setup.py build
-
+%py2_build
 %if 0%{?with_python3}
-pushd %{py3dir}
-%{__python3} setup.py build
-popd
+%py3_build
 %endif
 
 %install
 %if 0%{?with_python3}
-pushd %{py3dir}
-%{__python3} setup.py install -O1 --skip-build --root=%{buildroot}
-popd
+%py3_install
 %endif
+%py2_install
 
-%{__python2} setup.py install -O1 --skip-build --root=%{buildroot}
 
 %files -n python2-cmd2
 %license LICENSE
@@ -134,6 +124,10 @@ popd
 %endif
 
 %changelog
+* Wed Jul 25 2018 Haïkel Guémar <hguemar@fedoraproject.org> - 0.8.8-3
+- Modernize spec file
+- Add missing pyperclip dependency (blocks RHBZ#1605632)
+
 * Tue Jul 24 2018 Alfredo Moralejo <amoralej@redhat.com> - 0.8.8-2
 - Added setuptools as BuildRequires.
 
