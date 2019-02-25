@@ -1,12 +1,9 @@
-%if 0%{?fedora}
-%global with_python3 1
-%endif
 
 %global modname cmd2
 
 Name:             python-cmd2
 Version:          0.8.8
-Release:          6%{?dist}
+Release:          7%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 License:          MIT
@@ -41,30 +38,10 @@ See docs at http://packages.python.org/cmd2/
 
 %description %_description
 
-%package -n python2-cmd2
-Summary: %summary
-BuildRequires:    python2-devel
-BuildRequires:    python2-setuptools
-BuildRequires:    dos2unix
-
-Requires:         python2-pyparsing >= 2.0.1
-Requires:         python2-pyperclip
-Requires:         python2-six
-Requires:         python2-wcwidth
-Requires:         python2-contextlib2
-Requires:         python2-enum34
-Requires:         python2-subprocess32
-Requires:         /usr/bin/which
-%{?python_provide:%python_provide python2-cmd2}
-
-%description -n python2-cmd2 %_description
-
-%if 0%{?with_python3}
 %package -n python3-cmd2
 Summary:        Extra features for standard library's cmd module
 BuildRequires:    python3-devel
 BuildRequires:    python3-setuptools
-BuildRequires:    python2-tools
 BuildRequires:    dos2unix
 
 Requires:         python3-pyparsing
@@ -97,40 +74,29 @@ Usable without modification anywhere cmd is used; simply import cmd2.Cmd
 in place of cmd.Cmd.
 
 See docs at http://packages.python.org/cmd2/
-%endif
 
 %prep
 %setup -q -n %{modname}-%{version}
 
 %build
-%py2_build
-%if 0%{?with_python3}
 %py3_build
-%endif
 
 %install
-%if 0%{?with_python3}
 %py3_install
-%endif
-%py2_install
 
 
-%files -n python2-cmd2
-%license LICENSE
-%doc CHANGELOG.md CODEOWNERS CONTRIBUTING.md README.md
-%{python2_sitelib}/cmd2.py*
-%{python2_sitelib}/%{modname}-%{version}*
-
-%if 0%{?with_python3}
 %files -n python3-%{modname}
 %license LICENSE
 %doc CHANGELOG.md CODEOWNERS CONTRIBUTING.md README.md
 %{python3_sitelib}/cmd2.py*
 %{python3_sitelib}/__pycache__/cmd2*
 %{python3_sitelib}/%{modname}-%{version}*
-%endif
 
 %changelog
+* Mon Feb 25 2019 Miro Hrončok <mhroncok@redhat.com> - 0.8.8-7
+- Subpackage python2-cmd2 has been removed
+  See https://fedoraproject.org/wiki/Changes/Mass_Python_2_Package_Removal
+
 * Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.8.8-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
