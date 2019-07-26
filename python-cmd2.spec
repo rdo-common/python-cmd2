@@ -3,7 +3,7 @@
 
 Name:             python-cmd2
 Version:          0.8.8
-Release:          7%{?dist}
+Release:          8%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 License:          MIT
@@ -93,6 +93,9 @@ See docs at http://packages.python.org/cmd2/
 %{python3_sitelib}/%{modname}-%{version}*
 
 %changelog
+* Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.8.8-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Mon Feb 25 2019 Miro Hrončok <mhroncok@redhat.com> - 0.8.8-7
 - Subpackage python2-cmd2 has been removed
   See https://fedoraproject.org/wiki/Changes/Mass_Python_2_Package_Removal
