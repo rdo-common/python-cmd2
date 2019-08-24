@@ -2,13 +2,13 @@
 %global modname cmd2
 
 Name:             python-cmd2
-Version:          0.8.8
-Release:          9%{?dist}
+Version:          0.9.16
+Release:          1%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 License:          MIT
-URL:              http://pypi.python.org/pypi/cmd2
-Source0:          http://pypi.python.org/packages/source/c/%{modname}/%{modname}-%{version}.tar.gz
+URL:              https://pypi.python.org/pypi/cmd2
+Source0:          https://files.pythonhosted.org/packages/ef/77/7a13dbfc91018ad4d7ad07345c636e374a7655a17ac5b3c8c1248c4e722c/cmd2-0.9.16.tar.gz
 BuildArch:        noarch
 
 
@@ -42,6 +42,7 @@ See docs at http://packages.python.org/cmd2/
 Summary:        Extra features for standard library's cmd module
 BuildRequires:    python3-devel
 BuildRequires:    python3-setuptools
+BuildRequires:    python3-setuptools_scm
 BuildRequires:    dos2unix
 
 Requires:         python3-pyparsing
@@ -88,11 +89,13 @@ See docs at http://packages.python.org/cmd2/
 %files -n python3-%{modname}
 %license LICENSE
 %doc CHANGELOG.md CODEOWNERS CONTRIBUTING.md README.md
-%{python3_sitelib}/cmd2.py*
-%{python3_sitelib}/__pycache__/cmd2*
+%{python3_sitelib}/cmd2
 %{python3_sitelib}/%{modname}-%{version}*
 
 %changelog
+* Sat Aug 24 2019 Kevin Fenzi <kevin@scrye.com> - 0.9.16-1
+- Update to 0.9.16. Fixes bug #1732777
+
 * Mon Aug 19 2019 Miro Hrončok <mhroncok@redhat.com> - 0.8.8-9
 - Rebuilt for Python 3.8
 
