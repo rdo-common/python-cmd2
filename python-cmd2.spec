@@ -3,7 +3,7 @@
 
 Name:             python-cmd2
 Version:          0.9.16
-Release:          2%{?dist}
+Release:          3%{?dist}
 Summary:          Extra features for standard library's cmd module
 
 License:          MIT
@@ -93,6 +93,9 @@ See docs at http://packages.python.org/cmd2/
 %{python3_sitelib}/%{modname}-%{version}*
 
 %changelog
+* Thu Jan 30 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.16-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Thu Oct 03 2019 Miro Hrončok <mhroncok@redhat.com> - 0.9.16-2
 - Rebuilt for Python 3.8.0rc1 (#1748018)
 
