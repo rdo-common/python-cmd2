@@ -1,7 +1,7 @@
 %global pypi_name cmd2
 
 Name:             python-cmd2
-Version:          1.3.10
+Version:          1.3.11
 Release:          1%{?dist}
 Summary:          Extra features for standard library's cmd module
 
@@ -61,7 +61,7 @@ Drop-in replacement adds several features for command-prompt tools:
  * Multi-line commands
  * Case-insensitive commands
  * Special-character shortcut commands (beyond cmd's "@" and "!")
- * Settable environment parameters 
+ * Settable environment parameters
  * Parsing commands with flags
  * > (filename), >> (filename) redirect output to file
  * < (filename) gets input from file
@@ -92,6 +92,9 @@ See docs at http://packages.python.org/cmd2/
 %{python3_sitelib}/%{pypi_name}-%{version}*
 
 %changelog
+* Thu Nov 19 2020 Joel Capitao <jcapitao@redhat.com> - 1.3.11-1
+- Update to 1.3.11.
+
 * Sun Sep 27 2020 Kevin Fenzi <kevin@scrye.com> - 1.3.10-1
 - Update to 1.3.10. Fixes bug #1878431
 
