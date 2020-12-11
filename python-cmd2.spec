@@ -1,7 +1,7 @@
 %global pypi_name cmd2
 
-Name:             python-cmd2
-Version:          1.3.11
+Name:             python-%{pypi_name}
+Version:          1.4.0
 Release:          1%{?dist}
 Summary:          Extra features for standard library's cmd module
 
@@ -9,7 +9,6 @@ License:          MIT
 URL:              https://pypi.python.org/pypi/cmd2
 Source0:          %{pypi_source}
 BuildArch:        noarch
-
 
 %global _description\
 Enhancements for standard library's cmd module.\
@@ -38,7 +37,7 @@ See docs at http://packages.python.org/cmd2/
 %description %_description
 
 %package -n python3-cmd2
-Summary:        Extra features for standard library's cmd module
+Summary:          %{summary}
 BuildRequires:    python3-devel
 BuildRequires:    python3-setuptools
 BuildRequires:    python3-setuptools_scm
@@ -51,39 +50,16 @@ Requires:         python3-wcwidth
 Requires:         /usr/bin/which
 %{?python_provide:%python_provide python3-cmd2}
 
-%description -n python3-cmd2
-Enhancements for standard library's cmd module.
-
-Drop-in replacement adds several features for command-prompt tools:
-
- * Searchable command history (commands: "hi", "li", "run")
- * Load commands from file, save to file, edit commands in file
- * Multi-line commands
- * Case-insensitive commands
- * Special-character shortcut commands (beyond cmd's "@" and "!")
- * Settable environment parameters
- * Parsing commands with flags
- * > (filename), >> (filename) redirect output to file
- * < (filename) gets input from file
- * bare >, >>, < redirect to/from paste buffer
- * accepts abbreviated commands when unambiguous
- * `py` enters interactive Python console
- * test apps against sample session transcript (see example/example.py)
-
-Usable without modification anywhere cmd is used; simply import cmd2.Cmd
-in place of cmd.Cmd.
-
-See docs at http://packages.python.org/cmd2/
+%description -n python3-%{pypi_name} %_description
 
 %prep
-%setup -q -n %{pypi_name}-%{version}
+%autosetup -n %{pypi_name}-%{version}
 
 %build
 %py3_build
 
 %install
 %py3_install
-
 
 %files -n python3-%{pypi_name}
 %license LICENSE
@@ -92,6 +68,9 @@ See docs at http://packages.python.org/cmd2/
 %{python3_sitelib}/%{pypi_name}-%{version}*
 
 %changelog
+* Fri Dec 11 2020 Fabian Affolter <mail@fabian-affolter.ch> - 1.4.0-1
+- Update to latest upstream release 1.4.0
+
 * Thu Nov 19 2020 Joel Capitao <jcapitao@redhat.com> - 1.3.11-1
 - Update to 1.3.11.
 
