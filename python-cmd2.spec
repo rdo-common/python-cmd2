@@ -10,6 +10,9 @@ URL:              https://pypi.python.org/pypi/cmd2
 Source0:          %{pypi_source}
 BuildArch:        noarch
 
+BuildRequires:    git
+Patch0001:        0001-Remove-dep-on-setuptools_scm-3.0.patch
+
 %global _description\
 Enhancements for standard library's cmd module.\
 \
@@ -53,7 +56,7 @@ Requires:         /usr/bin/which
 %description -n python3-%{pypi_name} %_description
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%autosetup -n %{pypi_name}-%{version} -S git
 
 %build
 %py3_build

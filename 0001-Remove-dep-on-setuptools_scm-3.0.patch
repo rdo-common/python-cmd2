@@ -1,0 +1,38 @@
+From 00aa307499281a5d2b7098ee214abf0a2bdad78e Mon Sep 17 00:00:00 2001
+From: yatinkarel <ykarel@redhat.com>
+Date: Wed, 13 Jan 2021 16:35:46 +0530
+Subject: [PATCH] Remove dep on setuptools_scm >= 3.0
+
+3.0 is not available in CentOS8, currently have
+1.15.7 from PowerTools repo.
+---
+ setup.py | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 123a045f..7b9c3415 100755
+--- a/setup.py
++++ b/setup.py
+@@ -31,7 +31,7 @@ Programming Language :: Python :: Implementation :: CPython
+ Topic :: Software Development :: Libraries :: Python Modules
+ """.splitlines())))  # noqa: E128
+ 
+-SETUP_REQUIRES = ['setuptools >= 34.4', 'setuptools_scm >= 3.0']
++SETUP_REQUIRES = ['setuptools >= 34.4', 'setuptools_scm']
+ 
+ INSTALL_REQUIRES = [
+     'attrs >= 16.3.0',
+@@ -70,9 +70,7 @@ EXTRAS_REQUIRE = {
+ 
+ setup(
+     name="cmd2",
+-    use_scm_version={
+-        'git_describe_command': 'git describe --dirty --tags --long --exclude plugin-*'
+-    },
++    version="1.4.0",
+     description=DESCRIPTION,
+     long_description=LONG_DESCRIPTION,
+     long_description_content_type='text/markdown',
+-- 
+2.20.1
+
